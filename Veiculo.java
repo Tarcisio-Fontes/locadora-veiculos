@@ -1,49 +1,41 @@
 package projeto;
 
+// Classe abstrata que representa um veículo genérico
 public abstract class Veiculo {
-	
-	private String modelo;
-	private String marca;
-	private int ano;
-	private double precoBase;
-	
-	public Veiculo(String modelo, String marca, int ano, double precoBase) {
-		super();
-		this.setModelo(modelo);
-		this.setMarca(marca);
-		this.setAno(ano);
-		this.setPrecoBase(precoBase);
-	}
+    private String modelo;
+    private String marca;
+    private int ano;
+    private double precoBase;
+    private String veiculoTipo;
 
-	public String getModelo() {
-		return modelo;
-	}
+    public Veiculo(String modelo, String marca, int ano, double precoBase) {
+        this.modelo = modelo;
+        this.marca = marca;
+        this.ano = ano;
+        this.precoBase = precoBase;
+    }
 
-	public void setModelo(String modelo) {
-		this.modelo = modelo;
-	}
-
-	public String getMarca() {
-		return marca;
-	}
-
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
-
-	public int getAno() {
-		return ano;
-	}
-
-	public void setAno(int ano) {
-		this.ano = ano;
-	}
-
-	public double getPrecoBase() {
-		return precoBase;
-	}
-
-	public void setPrecoBase(double precoBase) {
-		this.precoBase = precoBase;
-	}
+    // Getters e Setters
+    public String getModelo(){
+    	return modelo;
+    }
+    public String getMarca(){
+    	return marca; 
+    }
+    public int getAno(){
+    	return ano;
+    }
+    public double getPrecoBase(){
+    	return precoBase;
+    }
+    public String getVeiculoTipo(){
+    	return veiculoTipo; 
+    }
+    public void setVeiculoTipo(String veiculoTipo){
+    	this.veiculoTipo = veiculoTipo; 
+    }
+    @Override
+    public String toString() {
+        return String.format("Modelo: %s\nMarca: %s\nAno: %d\nPreço Base: R$%.2f", modelo, marca, ano, precoBase);
+    }
 }
