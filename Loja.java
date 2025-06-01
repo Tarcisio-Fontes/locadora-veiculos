@@ -16,27 +16,59 @@ public class Loja {
     
     // Método principal que exibe o menu inicial
     public void menu() {
-        try {
-            int op;
-            System.out.printf("1. Alugar Veículo\n0. Sair\n--> ");
-            op = sc.nextInt();
-            sc.nextLine();
-            switch(op) {
-                case 1:
-                    menuAlugar(); // Chama o menu de aluguel
-                    break;
-                case 0:
-                    System.out.println("Saindo..."); // Encerra o programa
-                    break;
-                default:
-                    menu(); // Volta ao menu se opção inválida
-                    break;
-            }
-        } catch(java.util.InputMismatchException e) {
-            System.out.println("Foi digitado algo inesperado");
-            sc.nextLine(); // Limpa buffer do scanner
-        }
-    }
+    	Scanner sc = new Scanner(System.in);
+    	int opcao = -1;
+
+    	while (opcao != 0) {
+    		System.out.println("\n=== LOCADORA DE VEÍCULOS ===");
+    	    System.out.println("1 - Cadastrar moto");
+    	    System.out.println("2 - Cadastrar carro");
+    	    System.out.println("3 - Cadastrar bicicleta");
+    	    System.out.println("4 - Alugar veículo");
+    	    System.out.println("5 - Listar disponíveis");
+    	    System.out.println("6 - Calcular serviço extra");
+    	    System.out.println("0 - Sair");
+    	    System.out.print("Escolha: ");
+
+    	    try{
+    	    	opcao = Integer.parseInt(sc.nextLine());
+    	        switch (opcao) {
+    	        	case 1:
+    	        		cadastrarMoto();
+    	                break;
+    	        	case 2:
+    	                cadastrarCarro();
+    	                break;
+    	        	case 3:
+    	                cadastrarBicicleta();
+    	                break;
+    	            case 4:
+    	            	menuAlugar();
+    	                break;
+    	            case 5:
+    	                listarVeiculos();
+    	                break;
+    	            case 6:
+    	                System.out.print("Informe o serviço (seguro/tanque cheio/condutor adicional): ");
+    	                String servico = sc.nextLine();
+    	                double valor = calcularServicoExtra(servico);
+    	                if (valor > 0) {
+    	                        System.out.printf("Valor: R$ %.2f\n", valor);
+    	                    }
+    	                    break; 
+    	            case 0:
+    	                System.out.println("Saindo...");
+    	                break;
+    	            default:
+    	                System.out.println("Opção inválida!");
+    	            }
+    	        } catch (NumberFormatException e) {
+    	            System.out.println("Erro: Digite apenas números!");
+    	        }
+    	    }
+
+    	    sc.close();
+    	}
     
     // Menu para selecionar tipo de veículo para alugar
     public void menuAlugar() {
