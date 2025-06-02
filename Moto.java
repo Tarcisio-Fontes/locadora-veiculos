@@ -20,22 +20,22 @@ public class Moto extends Veiculo implements Automovel {
     }
 
     @Override
-    public double acelerar(double velocidade) {
-        return velocidade + 20;
+    public double acelerar() {
+        return 20;
     }
 
     @Override
-    public double frear(double velocidade) {
-        return velocidade - 20;
-    }
-
-    @Override
-    public boolean temMotor() {
-        return true;
+    public double frear() {
+        return 20;
     }
 
     @Override
     public String toString() {
-        return super.toString() + String.format("\nCilindradas: %dcc\nTipo: %s", cc, tipo);
+        return String.format("===== Moto =====\n\nModelo: %s\nMarca: %s\nAno: %d\nPreço: %.4f\nCilindradas: %d\nTipo: %s\n",getModelo(), getMarca(), getAno(), getPrecoBase(),cc,tipo);
     }
+
+	@Override
+	public void painel(double velocidade) {
+		System.out.println("Velocidade: " + velocidade);
+	}	
 }
