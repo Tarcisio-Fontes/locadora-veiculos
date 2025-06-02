@@ -2,7 +2,7 @@ package projeto;
 
 public interface Automovel {
 	
-	public double acelerar(double velocidade);
-	public double frear(double velocidade);
-	public boolean temMotor();
+	public double acelerar();
+	public double frear();
+	public void painel(double velocidade);
 }
