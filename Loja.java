@@ -16,7 +16,6 @@ public class Loja {
     
     // Método principal que exibe o menu inicial
     public void menu() {
-    	Scanner sc = new Scanner(System.in);
     	int opcao = -1;
 
     	while (opcao != 0) {
@@ -210,192 +209,219 @@ public class Loja {
     }
     
     public void testeDrive() {
-    	ArrayList<Integer> indicesRepetidos = new ArrayList<>();
-    	ArrayList<Carro> repetidosC = new ArrayList<>();
-    	ArrayList<Moto> repetidosM = new ArrayList<>();
-    	String modelo;
-    	double velocidade = 0;
-    	int count = 0;
-    	int op;
-    	int i;
-    	int j;
-    	
-    	for(Veiculo carro : carros) {
-    		System.out.println(carro);
-    	}
-    	
-    	for(Veiculo moto : motos) {
-    		System.out.println(moto);
-    	}
-    	
-    	System.out.println("Deseja fazer o teste drive com qual tipo de veiculo? ");
-    	System.out.println("1 - Carro");
-    	System.out.println("2 - Moto");
-    	op = sc.nextInt();
-    	sc.nextLine();
-    	
-    	if(op==1) {
-    		if(!carros.isEmpty()) {
-    			for(Veiculo carro : carros) {
-    				System.out.println(carro);
-    			}
-    			System.out.println("Qual modelo? ");
-    			modelo = sc.nextLine();
-    			
-    			for (i = 0; i < carros.size(); i++) {
-    	            if (carros.get(i).getModelo().equalsIgnoreCase(modelo)) {
-    	                indicesRepetidos.add(i);
-    	                count++;
-    	            }
-    	        }
+        ArrayList<Integer> indicesRepetidos = new ArrayList<>();
+        ArrayList<Carro> repetidosC = new ArrayList<>();
+        ArrayList<Moto> repetidosM = new ArrayList<>();
+        String modelo;
+        double velocidade = 0;
+        int count = 0;
+        int op;
+        int i;
+        int j = -1;
 
-    	        // Tratamento para modelos não encontrados
-    	        if (count == 0) {
-    	            System.out.println("Modelo não encontrado!");
-    	            return;
-    	        }
-    	        // Tratamento para quando há apenas um veículo com o modelo
-    	        else if (count == 1) {
-    	            Carro carro = (Carro) carros.get(indicesRepetidos.get(0));
-    	            System.out.println(carro);
-    	            for(i = 0; i < 10; i++) {
-    	            	System.out.println("1 - Acelerar");
-    	            	System.out.println("2 - Frear");
-    	            	j = sc.nextInt();
-    	            	sc.nextLine();
-    	            	if(j==1) {
-    	            		velocidade += carro.acelerar();
-    	            	}
-    	            	else {
-    	            		velocidade -= carro.frear();
-    	            	}
-    	            	carro.painel(velocidade);
-    	            }
-    	        }
-    	        // Tratamento para quando há vários veículos com mesmo modelo
-    	        else {
-    	            System.out.println("========== MODELOS REPETIDOS ==========");
-    	            for (int z : indicesRepetidos) {
-    	                Carro carro = (Carro) carros.get(z);
-    	                repetidosC.add(carro);
-    	                System.out.println(carro + "\n");
-    	            }
+        System.out.println("Deseja fazer o teste drive com qual tipo de veiculo? ");
+        System.out.println("1 - Carro");
+        System.out.println("2 - Moto");
+        System.out.println("0 - Encerrar test drive");
+        op = sc.nextInt();
+        sc.nextLine();
 
-    	            System.out.println("Digite o ano do modelo desejado: ");
-    	            int ano = sc.nextInt();
-    	            sc.nextLine();
+        if(op == 0) {
+            System.out.println("Encerrando teste drive.");
+            return;
+        }
 
-    	            boolean encontrado = false;
-    	            // Procura o veículo com o ano especificado
-    	            for (Carro carro : repetidosC) {
-    	                if (carro.getAno() == ano) {
-    	                    System.out.println(carro);
-    	                    for(i = 0; i < 10; i++) {
-    	    	            	System.out.println("1 - Acelerar");
-    	    	            	System.out.println("2 - Frear");
-    	    	            	j = sc.nextInt();
-    	    	            	sc.nextLine();
-    	    	            	if(j==1) {
-    	    	            		velocidade += carro.acelerar();
-    	    	            	}
-    	    	            	else {
-    	    	            		velocidade -= carro.frear();
-    	    	            	}
-    	    	            	carro.painel(velocidade);
-    	    	            }
-    	                    encontrado = true;
-    	                    break;
-    	                }
-    	            }
+        if(op == 1) {
+            if(!carros.isEmpty()) {
+                for(Veiculo carro : carros) {
+                    System.out.println(carro);
+                }
+                System.out.println("Qual modelo? ");
+                modelo = sc.nextLine();
 
-    	            if (!encontrado) {
-    	                System.out.println("Ano não encontrado para o modelo digitado!");
-    	            }
-    	        }
-    		}
-    	}
-    	else {
-    		if(!motos.isEmpty()) {
-    			for(Veiculo moto : motos) {
-    				System.out.println(moto);
-    			}
-    			System.out.println("Qual modelo? ");
-    			modelo = sc.nextLine();
-    			
-    			for (i = 0; i < motos.size(); i++) {
-    	            if (motos.get(i).getModelo().equalsIgnoreCase(modelo)) {
-    	                indicesRepetidos.add(i);
-    	                count++;
-    	            }
-    	        }
+                for (i = 0; i < carros.size(); i++) { // Verificar se existe o modelo digitado
+                    if (carros.get(i).getModelo().equalsIgnoreCase(modelo)) {
+                        indicesRepetidos.add(i);
+                        count++;
+                    }
+                }
 
-    	        // Tratamento para modelos não encontrados
-    	        if (count == 0) {
-    	            System.out.println("Modelo não encontrado!");
-    	            return;
-    	        }
-    	        // Tratamento para quando há apenas um veículo com o modelo
-    	        else if (count == 1) {
-    	            Moto moto = (Moto) motos.get(indicesRepetidos.get(0));
-    	            System.out.println(moto);
-    	            for(i = 0; i < 10; i++) {
-    	            	System.out.println("1 - Acelerar");
-    	            	System.out.println("2 - Frear");
-    	            	j = sc.nextInt();
-    	            	sc.nextLine();
-    	            	if(j==1) {
-    	            		velocidade += moto.acelerar();
-    	            	}
-    	            	else {
-    	            		velocidade -= moto.frear();
-    	            	}
-    	            	moto.painel(velocidade);
-    	            }
-    	        }
-    	        // Tratamento para quando há vários veículos com mesmo modelo
-    	        else {
-    	            System.out.println("========== MODELOS REPETIDOS ==========");
-    	            for (int z : indicesRepetidos) {
-    	                Moto moto = (Moto) motos.get(z);
-    	                repetidosM.add(moto);
-    	                System.out.println(moto + "\n");
-    	            }
+                if (count == 0) {
+                    System.out.println("Modelo não encontrado!");
+                    return;
+                }
+                else if (count == 1) { //Se existir o modelo...
+                    Carro carro = (Carro) carros.get(indicesRepetidos.get(0));
+                    System.out.println(carro);
+                    velocidade = 0;
+                    while (j != 0) {
+                        System.out.println("1 - Acelerar");
+                        System.out.println("2 - Frear");
+                        System.out.println("0 - Sair do test drive");
+                        j = sc.nextInt();
+                        sc.nextLine();
+                        
+                        if(j == 0) {
+                            System.out.println("Saindo do test drive.");
+                            break;
+                        }else if(j == 1) {
+                            velocidade += carro.acelerar();
+                        } else if(j == 2) {
+                            velocidade -= carro.frear();
+                            if (velocidade < 0) velocidade = 0; // velocidade não negativa
+                        } else {
+                            System.out.println("Opção inválida!");
+                            continue;
+                        }
+                        carro.painel(velocidade);
+                    }
+                }
+                else {
+                    System.out.println("========== MODELOS REPETIDOS ==========");
+                    for (int z : indicesRepetidos) {
+                        Carro carro = (Carro) carros.get(z);
+                        repetidosC.add(carro);
+                        System.out.println(carro + "\n");
+                    }
 
-    	            System.out.println("Digite o ano do modelo desejado: ");
-    	            int ano = sc.nextInt();
-    	            sc.nextLine();
+                    System.out.println("Digite o ano do modelo desejado: ");
+                    int ano = sc.nextInt();
+                    sc.nextLine();
 
-    	            boolean encontrado = false;
-    	            // Procura o veículo com o ano especificado
-    	            for (Moto moto : repetidosM) {
-    	                if (moto.getAno() == ano) {
-    	                    System.out.println(moto);
-    	                    for(i = 0; i < 10; i++) {
-    	    	            	System.out.println("1 - Acelerar");
-    	    	            	System.out.println("2 - Frear");
-    	    	            	j = sc.nextInt();
-    	    	            	sc.nextLine();
-    	    	            	if(j==1) {
-    	    	            		velocidade += moto.acelerar();
-    	    	            	}
-    	    	            	else {
-    	    	            		velocidade -= moto.frear();
-    	    	            	}
-    	    	            	moto.painel(velocidade);
-    	    	            }
-    	                    encontrado = true;
-    	                    break;
-    	                }
-    	            }
+                    boolean encontrado = false;
+                    for (Carro carro : repetidosC) {
+                        if (carro.getAno() == ano) {
+                            System.out.println(carro);
+                            velocidade = 0;
+                            while (true) {
+                                System.out.println("1 - Acelerar");
+                                System.out.println("2 - Frear");
+                                System.out.println("0 - Sair do test drive");
+                                j = sc.nextInt();
+                                sc.nextLine();
+                                if(j == 0) {
+                                    System.out.println("Saindo do test drive.");
+                                    break;
+                                } else if(j == 1) {
+                                    velocidade += carro.acelerar();
+                                } else if(j == 2) {
+                                    velocidade -= carro.frear();
+                                    if (velocidade < 0) velocidade = 0;
+                                } else {
+                                    System.out.println("Opção inválida!");
+                                    continue;
+                                }
+                                carro.painel(velocidade);
+                            }
+                            encontrado = true;
+                            break;
+                        }
+                    }
 
-    	            if (!encontrado) {
-    	                System.out.println("Ano não encontrado para o modelo digitado!");
-    	            }
-    	        }
-    		}
-    	}
+                    if (!encontrado) {
+                        System.out.println("Ano não encontrado para o modelo digitado!");
+                    }
+                }
+            } else {
+                System.out.println("Nenhum carro cadastrado.");
+            }
+        }
+        else if(op == 2) { //Moto
+            if(!motos.isEmpty()) {
+                for(Veiculo moto : motos) {
+                    System.out.println(moto);
+                }
+                System.out.println("Qual modelo? ");
+                modelo = sc.nextLine();
+
+                for (i = 0; i < motos.size(); i++) {
+                    if (motos.get(i).getModelo().equalsIgnoreCase(modelo)) {
+                        indicesRepetidos.add(i);
+                        count++;
+                    }
+                }
+
+                if (count == 0) {
+                    System.out.println("Modelo não encontrado!");
+                    return;
+                } else if (count == 1) {
+                    Moto moto = (Moto) motos.get(indicesRepetidos.get(0));
+                    System.out.println(moto);
+                    velocidade = 0;
+                    while (true) {
+                        System.out.println("1 - Acelerar");
+                        System.out.println("2 - Frear");
+                        System.out.println("0 - Sair do test drive");
+                        j = sc.nextInt();
+                        sc.nextLine();
+                        if(j == 0) {
+                            System.out.println("Saindo do test drive.");
+                            break;
+                        } else if(j == 1) {
+                            velocidade += moto.acelerar();
+                        } else if(j == 2) {
+                            velocidade -= moto.frear();
+                            if (velocidade < 0) velocidade = 0;
+                        } else {
+                            System.out.println("Opção inválida!");
+                            continue;
+                        }
+                        moto.painel(velocidade);
+                    }
+                } else {
+                    System.out.println("========== MODELOS REPETIDOS ==========");
+                    for (int z : indicesRepetidos) {
+                        Moto moto = (Moto) motos.get(z);
+                        repetidosM.add(moto);
+                        System.out.println(moto + "\n");
+                    }
+
+                    System.out.println("Digite o ano do modelo desejado: ");
+                    int ano = sc.nextInt();
+                    sc.nextLine();
+
+                    boolean encontrado = false;
+                    for (Moto moto : repetidosM) {
+                        if (moto.getAno() == ano) {
+                            System.out.println(moto);
+                            velocidade = 0;
+                            while (true) {
+                                System.out.println("1 - Acelerar");
+                                System.out.println("2 - Frear");
+                                System.out.println("0 - Sair do test drive");
+                                j = sc.nextInt();
+                                sc.nextLine();
+                                if(j == 0) {
+                                    System.out.println("Saindo do test drive.");
+                                    break;
+                                } else if(j == 1) {
+                                    velocidade += moto.acelerar();
+                                } else if(j == 2) {
+                                    velocidade -= moto.frear();
+                                    if (velocidade < 0) velocidade = 0;
+                                } else {
+                                    System.out.println("Opção inválida!");
+                                    continue;
+                                }
+                                moto.painel(velocidade);
+                            }
+                            encontrado = true;
+                            break;
+                        }
+                    }
+
+                    if (!encontrado) {
+                        System.out.println("Ano não encontrado para o modelo digitado!");
+                    }
+                }
+            } else {
+                System.out.println("Nenhuma moto cadastrada.");
+            }
+        } else {
+            System.out.println("Opção inválida!");
+        }
     }
-    
+
     // Método para cadastrar uma nova moto
     public void cadastrarMoto() {
         System.out.println("Modelo: ");
