@@ -1,6 +1,6 @@
-package projeto;
+package locadora_veiculos;
 
-public class Bicicleta extends Veiculo implements Automovel{
+public class Bicicleta extends Veiculo{
     private int numMarchas;
     private String tipoFreio;
     private boolean temSuspensao;
@@ -23,21 +23,6 @@ public class Bicicleta extends Veiculo implements Automovel{
 
     public boolean temSuspensao() {
         return temSuspensao;
-    }
-
-    @Override
-    public double acelerar(double velocidade) {
-        return velocidade + 5;
-    }
-
-    @Override
-    public double frear(double velocidade) {
-        return velocidade - 5;
-    }
-    
-    @Override
-    public boolean temMotor() {
-    	return false;
     }
 
     @Override

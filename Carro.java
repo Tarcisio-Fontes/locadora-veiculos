@@ -1,12 +1,9 @@
-package projeto;
-import java.util.Scanner;
+package locadora_veiculos;
 
 public class Carro extends Veiculo implements Automovel{
 	private int qtdPortas;
 	private boolean conversivel;
 	private String tipoCombustivel;
-	
-	private Scanner leitor = new Scanner(System.in);
 
 	public Carro(String modelo, String marca, int ano, double precoBase, int qtdPortas, boolean conversivel, String tipoCombustivel) {
 		super(modelo, marca, ano, precoBase);
@@ -30,19 +27,19 @@ public class Carro extends Veiculo implements Automovel{
 	}
 
 	@Override
-	public double acelerar(double velocidade) {
-		return velocidade + 20;
+	public double acelerar() {
+		return 20;
 	}
 
 	@Override
-	public double frear(double velocidade) {
-		return velocidade - 20;
+	public double frear() {
+		return 20;
 	}
 
 	@Override
-	public boolean temMotor() {
-		return true;
-	}
+	public void painel(double velocidade) {
+		System.out.println("Velocidade: " + velocidade);
+	}	
 
 	@Override
 	public String toString() {

@@ -1,4 +1,4 @@
-package projeto;
+package locadora_veiculos;
 
 public interface Automovel {
 	

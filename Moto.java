@@ -1,4 +1,4 @@
-package projeto;
+package locadora_veiculos;
 
 // Classe que representa uma moto, estendendo Veiculo e implementando Automovel
 public class Moto extends Veiculo implements Automovel {

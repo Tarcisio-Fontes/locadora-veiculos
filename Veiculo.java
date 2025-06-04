@@ -1,41 +1,47 @@
-package projeto;
+package locadora_veiculos;
 
-// Classe abstrata que representa um veículo genérico
 public abstract class Veiculo {
-    private String modelo;
-    private String marca;
-    private int ano;
-    private double precoBase;
-    private String veiculoTipo;
+	
+	protected String modelo;
+	protected String marca;
+	protected int ano;
+	protected double precoBase;
+	protected String veiculoTipo = "";
+	
+	public Veiculo(String modelo, String marca, int ano, double precoBase) {
+		super();
+		this.modelo = modelo;
+		this.marca = marca;
+		this.ano = ano;
+		this.precoBase = precoBase;
+	}
 
-    public Veiculo(String modelo, String marca, int ano, double precoBase) {
-        this.modelo = modelo;
-        this.marca = marca;
-        this.ano = ano;
-        this.precoBase = precoBase;
-    }
+	public String getModelo() {
+		return modelo;
+	}
 
-    // Getters e Setters
-    public String getModelo(){
-    	return modelo;
-    }
-    public String getMarca(){
-    	return marca; 
-    }
-    public int getAno(){
-    	return ano;
-    }
-    public double getPrecoBase(){
-    	return precoBase;
-    }
-    public String getVeiculoTipo(){
-    	return veiculoTipo; 
-    }
-    public void setVeiculoTipo(String veiculoTipo){
-    	this.veiculoTipo = veiculoTipo; 
-    }
-    @Override
-    public String toString() {
-        return String.format("Modelo: %s\nMarca: %s\nAno: %d\nPreço Base: R$%.2f", modelo, marca, ano, precoBase);
-    }
+	public String getMarca() {
+		return marca;
+	}
+
+	public int getAno() {
+		return ano;
+	}
+
+	public double getPrecoBase() {
+		return precoBase;
+	}
+	
+	public String getVeiculoTipo() {
+		return veiculoTipo;
+	}
+	
+	@Override
+	public String toString() {
+		return "Modelo: " + modelo + "\nMarca: " + marca + "\nAno: " + ano + "\nPreço Base: " + precoBase;
+	}
+	
+	protected void setVeiculoTipo(String veiculoTipo) {
+		this.veiculoTipo = veiculoTipo;
+	}
 }
